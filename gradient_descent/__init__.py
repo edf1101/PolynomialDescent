@@ -168,3 +168,14 @@ def gradient_descent(
             break
 
     return temp_coeff
+
+
+def score(points, coefficients):
+    """
+    Should perform an R^2 scoring metric with the points against the estimated parameters
+    :param points: List of all points to score against
+    :param coefficients: The coefficients to test against
+    :return: Score between 0-1  where 0 Is awful correlation & 1 is perfect
+    """
+
+    return (sum_of_squared_residuals(coefficients, points) ** 0.5) / len(points)

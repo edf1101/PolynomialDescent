@@ -14,17 +14,18 @@ import random
 import gradient_descent as gd
 
 
-def create_points(coefficients, offset_range=0.5):
+def create_points(coefficients, point_count=100, offset_range=0.5):
     """
     Creates a set of random points that follow a line with (optionally) a slight offset
 
     :param coefficients: The coefficients of the line to follow
+    :param point_count: how many points to generate (default = 100)
     :param offset_range: How big you want the offset to be from actual line
     :return: Array of points
     """
 
     points = []
-    for i in range(100):
+    for i in range(point_count):
         x = random.uniform(-10, 10)  # random x position between -10 - 10
         y = gd.line(x, coefficients)  # calculate correct y position from that
 
@@ -34,6 +35,20 @@ def create_points(coefficients, offset_range=0.5):
         point = (x + offset_x, y + offset_y)
         points.append(point)
     return points
+
+
+def train_test_split(points, test_size=0.3):
+    """
+    Split the points dataset up into a train test split set
+    :param points: The points to split up
+    :param test_size: How big the test size should be
+    :return: 2 arrays ( train set, test set)
+    """
+    random.shuffle(points)
+    split = int(len(points) * test_size)  # if array is 100 long this will be 30
+    train = points[split:]
+    test = points
+    return train, test
 
 
 def get_scatter_points(points, plotter, color="b"):
