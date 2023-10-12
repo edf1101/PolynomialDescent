@@ -10,7 +10,9 @@ gd_points.draw_line([2,-3,4],plt)
 coeff = gd.gradient_descent(3,points_array)
 gd_points.draw_line(coeff,plt,color='g')
 plt.show()
+
 print(coeff)
+
 
 
 
