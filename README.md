@@ -1,6 +1,12 @@
 # Gradient Descent Module
+ _Gradient Descent for the Fundamentals of Machine Learning module of my Computer Science Degree_
 
-Gradient Descent module written by https://github.com/edf1101/ for my University Computer Science Degree
+## Example
+![Example](https://github.com/edf1101/GradientDescent/assets/96292907/b8157a76-769f-4313-ad71-fcc6e20e574b)
+
+- The blue points are the random points that somewhat fit the curve 2x<sup>2</sup> - 3x + 4
+- The Red line is the actual curve
+- The Green line is the predicted curve
 
 ## Info
 Modules Used
