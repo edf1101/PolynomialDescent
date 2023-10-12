@@ -128,7 +128,7 @@ def gradient_descent(
                 # finding horizontal line boring
                 learning_rate = 0.0003
             case 2:
-                learning_rate = 0.0003  # linear
+                learning_rate = 0.00001  # linear
             case 3:
                 learning_rate = 0.000001  # quadratic
             case 4:
