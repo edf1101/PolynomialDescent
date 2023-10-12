@@ -19,7 +19,7 @@ Modules Used
 - Quartic - learning = 0.0000000003
 - Cubic - learning = 0.00000003
 - Quadratic - learning = 0.000001
-- Linear - learning = 0.0003
+- Linear - learning = 0.00001
 
 In general for each extra polynomial term you add it should be ~100x smaller.
 Smaller learning rates may get better results, but you will need to have more attempts to reach it since it learns slower
