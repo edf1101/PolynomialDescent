@@ -2,7 +2,7 @@
  _Gradient Descent for the Fundamentals of Machine Learning module of my Computer Science Degree_
 
 ## Example
-Examples (both in Jupyter notebook and .py are found in /docs folder)
+Examples / Documentation  found [here](/docs/Examples.ipynb)
 
 ![Example](https://github.com/edf1101/GradientDescent/assets/96292907/b8157a76-769f-4313-ad71-fcc6e20e574b)
 
