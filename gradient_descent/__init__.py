@@ -1,5 +1,6 @@
 """
-Gradient Descent module written by https://github.com/edf1101/ for my University Computer Science Degree
+Gradient Descent module written by https://github.com/edf1101/
+for my University Computer Science Degree
 
 ## Info
 Modules Used
@@ -12,35 +13,37 @@ Learning Parameters (for OK results)
 - Quadratic - learning = 0.000001
 - Linear - learning = 0.0003
 In general for each extra polynomial term you add it should be ~100x smaller.
-Smaller learning rates may get better results but you will need to have more attempts to reach it since it learns slower
+Smaller learning rates may get better results but you will need to have more
+ attempts to reach it since it learns slower
 """
 
 
-def line(x, coefficients):
+def line(x_coordinate: float, coefficients: list[float]) -> float:
     """
     Returns the y-value of a function with given coefficients for any value x
 
-    :param x: the x value we're using
+    :param x_coordinate: the x value we're using
     :param coefficients: Coefficients of the line
     :return: y value
     """
-    y = 0
+    y_coordinate = 0
     for i in range(len(coefficients)):
-        y += coefficients[-i - 1] * (x**i)
+        y_coordinate += coefficients[-i - 1] * (x_coordinate**i)
 
-    return y
+    return y_coordinate
 
 
-def get_coordinates_x(points):
+def get_coordinates_x(points: list[tuple[float, float]]) -> list[float]:
     """
     For a list of points in the form [ [x1,y1],[x2,y2]...] it returns all the x coordinates
+
     :param points: A list of all the points to get x coordinates from
     :return: A list of the x coordinates
     """
     return [i[0] for i in points]
 
 
-def get_coordinates_y(points):
+def get_coordinates_y(points: list[tuple[float, float]]) -> list[float]:
     """
     For a list of points in the form [ [x1,y1],[x2,y2]...] it returns all the y coordinates
 
@@ -50,35 +53,39 @@ def get_coordinates_y(points):
     return [i[1] for i in points]
 
 
-def sum_of_squared_residuals(coefficients, points):
+def sum_of_squared_residuals(
+    coefficients: list[float], points: list[tuple[float, float]]
+) -> float:
     """
     The loss function for we are using, in this case the sum of squared residuals function
 
     :param coefficients: The coefficients of the line to Test
     :param points: A list of points in the dataset
-    :return: (float) the value of the loss function
+    :return: the value of the loss function
     """
 
-    sum = 0
-    for x, y in zip(get_coordinates_x(points), get_coordinates_y(points)):
-        sum += (
-            y - line(x, coefficients)
-        ) ** 2  # add on the squared difference between the real value and predicted
+    result = 0
+    for x_coordinate, y_coordinate in zip(get_coordinates_x(points), get_coordinates_y(points)):
 
-    return sum
+        # add on the squared difference between the real value and predicted
+        result += (y_coordinate - line(x_coordinate, coefficients)) ** 2
+
+    return result
 
 
-def get_rss_dif(coefficients, points, respect_to):
+def get_rss_dif(
+    coefficients: list[float], points: list[tuple[float, float]], respect_to: int) -> float:
     """
     Get the derivative of the RSS curve at a specific point to calcualte the step needed
 
     :param coefficients: The coefficients we're trying
     :param points: The points in the dataset
     :param respect_to: What parameter we're differentiating with respect to
-    :return: (float) the gradient
+    :return: the gradient
     """
 
-    # given the derivative is calculated as a sum we can just use a sum of smaller derivatives to make it more readable
+    # given the derivative is calculated as a sum we can just use a sum of smaller
+    # derivatives to make it more readable
     derivative = 0
 
     for point in points:  # Go through each point in the dataset
@@ -93,14 +100,19 @@ def get_rss_dif(coefficients, points, respect_to):
 
 
 def gradient_descent(
-    coefficient_count, points, learning_rate=-1, attempts=50000, debug=False
-):
+    coefficient_count: int,
+    points: list[tuple[float,float]],
+    learning_rate: float = -1,
+    attempts: int = 50000,
+    debug: bool = False,
+) -> list[float]:
     """
     This algorithm iterates the predicted parameters according to the dataset of points
 
     :param coefficient_count: how many coefficients we want to try and map this to
-    :param points: Points in the dataset we want to match
-    :param learning_rate: Default -1 -> it will automatically choose if less than quintic, otherwise specify it here
+    :param points: The points to train from
+    :param learning_rate: Default -1 -> it will automatically choose if less than quintic,
+     otherwise specify it here
     :param attempts: Max attempts before it gives up
     :param debug: Print debug messages about how the algorithm is going
     :return: array of predicted parameters
@@ -114,13 +126,14 @@ def gradient_descent(
         0 for i in range(coefficient_count)
     ]  # array of next step size for all coefficients (all start at 0)
 
-    # If learning rate = -1 then assign it a learning rate that will be OK (not perfect) as long as below 5th degree
+    # If learning rate = -1 then assign it a learning rate that will be OK
+    # (not perfect) as long as below 5th degree
 
     if learning_rate == -1:
         match coefficient_count:
             case 0:
                 # cant have no coefficients
-                raise Exception(
+                raise ValueError(
                     "Cant have no coefficients must be 1 ≤ coefficient_count"
                 )
 
@@ -135,9 +148,10 @@ def gradient_descent(
                 learning_rate = 0.00000003  # cubic
             case 5:
                 learning_rate = 0.0000000003  # quartic
-            case default:
-                # We don't have default values for above 5 coefficients so need to specify learning rate
-                raise Exception(
+            case _:
+                # We don't have default values for above 5 coefficients
+                # so need to specify learning rate
+                raise ValueError(
                     "No default values for when coefficent count> 5 please specify learning rate"
                 )
 
@@ -157,8 +171,9 @@ def gradient_descent(
 
             temp_coeff[i] += temp_steps[i]
 
-        # Used to check if all the coefficients are below the threshold for acceptable step sizes
-        # ie if step sizes are all <0.0001 then we have found a happy set of coefficients and can stop
+        # Used to check if all the coefficients are below the threshold
+        # for acceptable step sizes ie if step sizes are all <0.0001 then we have
+        # found a happy set of coefficients and can stop
         all_below = True
         for i in temp_steps:
             if abs(i) > 0.0001:
@@ -170,9 +185,10 @@ def gradient_descent(
     return temp_coeff
 
 
-def score(points, coefficients):
+def score(points: list[tuple[float, float]], coefficients: list[float]) -> float:
     """
     Should perform an R^2 scoring metric with the points against the estimated parameters
+
     :param points: List of all points to score against
     :param coefficients: The coefficients to test against
     :return: Score between 0-1  where 0 Is awful correlation & 1 is perfect

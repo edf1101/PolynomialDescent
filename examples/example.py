@@ -22,7 +22,7 @@ print(f'Training Size = {len(train_set)}')
 print(f'Testing Size = {len(test_set)}')
 
 # Train the model to get a line with estimated parameters
-trained_coefficients = gd.gradient_descent(3, points_array, debug = False)
+trained_coefficients = gd.gradient_descent(3, debug = False)
 print(f'Trained Coefficients = {trained_coefficients}')
 
 # Draw graphs to display the data
