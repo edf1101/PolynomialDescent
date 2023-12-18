@@ -7,7 +7,7 @@
 ### Installation
 This can be installed via pip by running
 
-```pip install ```
+```pip install gradient-descent-edf1101```
 
 It can then be used as a regular module
 
