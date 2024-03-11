@@ -11,6 +11,10 @@ This can be installed via pip by running
 
 It can then be used as a regular module
 
+Or you can clone the repository and run the setup.py file
+
+```python setup.py install```
+
 ### Examples
 Examples found in the examples folder both as a python file and as jupyter notebooks
 
@@ -22,7 +26,8 @@ Examples found in the examples folder both as a python file and as jupyter noteb
 
 ## Prerequisites
 Modules Used
-- Matplotlib
+- Matplotlib ```pip install matplotlib```
+- Jupyter notebook (for examples)```pip install notebook```
 
 Version of python Used = 3.11.4
 
