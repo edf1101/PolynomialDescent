@@ -1,6 +1,6 @@
-# Gradient Descent Module
+# Polynomial Regression
 ## Introduction
- _Gradient Descent for the Fundamentals of Machine Learning module of my Computer Science Degree_
+ _Polynomial regression using Gradient Descent for the Fundamentals of Machine Learning module of my Computer Science Degree_
 
 ## Getting Started
 
@@ -56,4 +56,4 @@ This falls under the MIT license found [here](LICENSE)
 ### Authors
 Ed Fillingham
 ### Sources
-This project can be found at https://github.com/edf1101/GradientDescent
+This project can be found at https://github.com/edf1101/PolynomialRegression
