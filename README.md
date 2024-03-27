@@ -1,6 +1,6 @@
 # Polynomial Regression
 ## Introduction
- _Polynomial regression using Gradient Descent for the Fundamentals of Machine Learning module of my Computer Science Degree_
+ _Polynomial regression using Gradient Descent_
 
 ## Getting Started
 
